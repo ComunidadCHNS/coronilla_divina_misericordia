@@ -5,199 +5,234 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Coronilla de la Divina Misericordia</title>
   <style>
-    body {
-      font-family: sans-serif;
-      text-align: center;
-      padding: 1em;
-      background: #f5f5f5;
+    body { font-family: sans-serif; text-align: center; padding: 1em; background: #f5f5f5; }
+    h2 { color: #003366; }
+
+    /* Cuentas grandes (5 décadas) */
+    .decadas {
+      display: flex; gap: 10px; justify-content: center; align-items: center;
+      margin: 12px auto 4px auto;
     }
-    h2 {
-      color: #003366;
+    .grande {
+      width: 26px; height: 26px; border-radius: 50%;
+      border: 3px solid #003366; background: #e0e7ef;
+      transition: background-color .3s, box-shadow .3s, transform .2s;
     }
-    .rosario {
-      position: relative;
-      width: 220px;
-      height: 300px;
-      margin: 20px auto 40px auto;
-    }
+    .grande.activa { background: #2b6cb0; box-shadow: 0 0 8px rgba(0,0,0,.25); }
+    .grande.actual { transform: scale(1.08); }
+
+    /* Rosario pequeño (10 cuentas) */
+    .rosario { position: relative; width: 220px; height: 300px; margin: 12px auto 28px auto; }
     .cuenta {
-      --total: 10;
-      --angle: calc(360deg / var(--total));
-      width: 30px;
-      height: 30px;
-      background: lightgray;
-      border-radius: 50%;
-      border: 2px solid #003366;
-      position: absolute;
-      top: 40%;
-      left: 50%;
+      --total: 10; --angle: calc(360deg / var(--total));
+      width: 30px; height: 30px; background: lightgray; border-radius: 50%;
+      border: 2px solid #003366; position: absolute; top: 40%; left: 50%;
       transform:
         rotate(calc((var(--i) - 1) * var(--angle)))
         translate(90px)
         rotate(calc((var(--i) - 1) * -1 * var(--angle)));
-      transition: background-color 0.3s;
+      transition: background-color .3s, box-shadow .3s, opacity .3s;
     }
+    .activa { background-color: #005A9C; box-shadow: 0 0 10px rgba(0,0,0,.25); }
+
     .cruz {
-      width: 12px;
-      height: 40px;
-      background: #003366;
-      position: absolute;
-      top: 88%;
-      left: 58%;
-      transform: translate(-50%, 0);
-      border-radius: 2px;
-      transition: transform 0.5s ease-in-out;
+      width: 12px; height: 40px; background: #003366;
+      position: absolute; top: 88%; left: 58%; transform: translate(-50%, 0);
+      border-radius: 2px; transition: transform .5s ease-in-out;
     }
     .cruz::before {
-      content: "";
-      width: 32px;
-      height: 12px;
-      background: #003366;
-      position: absolute;
-      top: 12px;
-      left: -10px;
-      border-radius: 2px;
+      content: ""; width: 32px; height: 12px; background: #003366;
+      position: absolute; top: 12px; left: -10px; border-radius: 2px;
     }
-    .cruz.animar {
-      animation: cruzBrilla 1.5s ease-in-out;
-    }
+    .cruz.animar { animation: cruzBrilla 1.5s ease-in-out; }
     @keyframes cruzBrilla {
       0%, 100% { transform: translate(-50%, 0) scale(1); opacity: 1; }
       50% { transform: translate(-50%, 0) scale(1.4); opacity: 0.6; }
     }
-    .activa {
-      background-color: #005A9C;
-    }
-    .boton {
-      padding: 10px 20px;
-      background-color: #003366;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      margin: 5px;
-    }
-    .boton:disabled {
-      background-color: #cccccc;
-      cursor: default;
-    }
-    .oracion {
-      font-size: 1.2em;
-      margin-top: 20px;
-      min-height: 2em;
-      max-width: 90%;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .finalizado {
-      margin-top: 20px;
-      font-weight: bold;
-      color: #2e7d32;
-    }
-    .imagen-misterio {
-	  widht:250px;
-      max-width: 50%;
-      margin: 20px auto;
-      display: block;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    }
-    .descripcion-misterio {
-      font-style: italic;
-      margin-top: 10px;
-      color: #333;
-      max-width: 90%;
-      margin-left: auto;
-      margin-right: auto;
-    }
+
+    .boton { padding: 10px 20px; background-color: #003366; color: #fff; border: none; border-radius: 5px; cursor: pointer; margin: 5px; }
+    .boton:disabled { background-color: #cccccc; cursor: default; }
+    .oracion { font-size: 1.1em; margin-top: 10px; min-height: 2.6em; max-width: 90%; margin-left: auto; margin-right: auto; }
+    .finalizado { margin-top: 16px; font-weight: bold; color: #2e7d32; }
+    .imagen-misterio { width:250px; max-width: 50%; margin: 12px auto; display: block; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.2); }
+    .descripcion-misterio { font-style: italic; margin-top: 8px; color: #333; max-width: 90%; margin-left: auto; margin-right: auto; }
+    .sub { color:#003366; margin: 4px 0 0 0; font-weight:600; }
   </style>
 </head>
 <body>
   <h2>Coronilla de la Divina Misericordia</h2>
-  <p>Oraciones.</p>
-  <img class="imagen-misterio" src="Jesus_Divina_MIsericordia_0.webp" alt="Jesus de la Divina Misericordia" />
+  <p class="sub">Decenas: 5 (Cada una: 1 cuenta grande + 10 pequeñas)</p>
+
+  <img class="imagen-misterio" src="Jesus_Divina_MIsericordia_0.webp" alt="Jesús de la Divina Misericordia" />
   <p class="descripcion-misterio">
     "Oh Sangre y Agua, que brotaste del Corazón de Jesús como una Fuente de Misericordia para nosotros, en Vos confío."
   </p>
+
+  <!-- fila de 5 cuentas grandes -->
+  <div class="decadas" id="decadas"></div>
+
+  <!-- anillo de 10 cuentas pequeñas -->
   <div class="rosario" id="cuentas">
     <div class="cruz" id="cruz"></div>
   </div>
+
   <div>
     <button class="boton" onclick="retroceder()" id="btnAnterior">Anterior</button>
     <button class="boton" onclick="avanzar()" id="btnSiguiente">Comenzar</button>
   </div>
-  <div class="oracion" id="oracion"></div>
+
+  <div class="oracion" id="oracion" aria-live="polite"></div>
   <div class="finalizado" id="mensajeFinal"></div>
 
-  <script>
-    const cuentas = document.getElementById("cuentas");
-    const oracion = document.getElementById("oracion");
-    const btnAnterior = document.getElementById("btnAnterior");
-    const btnSiguiente = document.getElementById("btnSiguiente");
-    const mensajeFinal = document.getElementById("mensajeFinal");
-    const cruz = document.getElementById("cruz");
+	<script>
+	  const cuentas = document.getElementById("cuentas");
+	  const decadasEl = document.getElementById("decadas");
+	  const oracion = document.getElementById("oracion");
+	  const btnAnterior = document.getElementById("btnAnterior");
+	  const btnSiguiente = document.getElementById("btnSiguiente");
+	  const mensajeFinal = document.getElementById("mensajeFinal");
+	  const cruz = document.getElementById("cruz");
 
-    let paso = 0;
-    const oraciones = [
-      "Padre Eterno, Te ofrezco el Cuerpo, la Sangre, el Alma y la Divinidad de Tu amadísimo Hijo, Nuestro Señor Jesucristo, en reparación de nuestros pecados y los del mundo entero.",
-      ...Array.from({ length: 10 }, (_, i) => `Súplica ${i + 1}: Por Su dolorosa Pasión, ten misericordia de nosotros y del mundo entero.`)
-    ];
+	  // === Config redirección ===
+	  const REDIRECT_URL = "https://sites.google.com/view/comunidad-catolica-chns/coronilla-de-la-divina-misericordia";
+	  const REDIRECT_DELAY_MS = 5000; // 5s
+	  let redirectTimer = null;
 
-    const rotaciones = [3, 2, 1, 10, 9, 8, 7, 6, 5, 4];
+	  // Visual: crear 5 cuentas grandes (décadas)
+	  const GRANDES = 5;
+	  const grandes = [];
+	  for (let d = 0; d < GRANDES; d++) {
+		const g = document.createElement("div");
+		g.className = "grande";
+		decadasEl.appendChild(g);
+		grandes.push(g);
+	  }
 
-    for (let i = 0; i < 10; i++) {
-      const cuenta = document.createElement("div");
-      cuenta.classList.add("cuenta");
-      cuenta.style.setProperty('--i', rotaciones[i]);
-      cuentas.appendChild(cuenta);
-    }
+	  // Visual: crear 10 cuentas pequeñas en círculo (orden personalizado)
+	  const rotaciones = [3,2,1,10,9,8,7,6,5,4];
+	  for (let i = 0; i < 10; i++) {
+		const c = document.createElement("div");
+		c.classList.add("cuenta");
+		c.style.setProperty('--i', rotaciones[i]);
+		cuentas.appendChild(c);
+	  }
 
-    function mostrarOracion() {
-      oracion.textContent = oraciones[paso];
-      const cuentasHijas = cuentas.querySelectorAll('.cuenta');
-      for (let i = 0; i < cuentasHijas.length; i++) {
-        cuentasHijas[i].classList.remove("activa");
-      }
-      if (paso > 0 && paso <= 10) {
-        for (let i = 0; i < paso; i++) {
-          cuentasHijas[i].classList.add("activa");
-        }
-      }
-      btnAnterior.disabled = paso === 0;
-      if (paso === oraciones.length - 1) {
-        btnSiguiente.textContent = "Finalizado";
-        btnSiguiente.disabled = true;
-        mensajeFinal.textContent = "Has finalizado esta parte. Serás redirigido en unos segundos.";
+	  // Lógica principal
+	  const DECADAS = 5;
+	  const PASOS_POR_DECADA = 11; // 1 (Padre Eterno) + 10 jaculatorias
+	  const TRISAGION_REP = 3;     // "Santo Dios..." x3
+	  const FINAL_ORACION = 1;     // Oración final
 
-        cruz.classList.add("animar");
+	  const PASOS_DECADAS = DECADAS * PASOS_POR_DECADA;                 // 55
+	  const PASOS_TRISAGION = TRISAGION_REP;                             // 3
+	  const PASOS_FINALES = FINAL_ORACION;                               // 1
+	  const TOTAL_PASOS = PASOS_DECADAS + PASOS_TRISAGION + PASOS_FINALES; // 59
 
-        setTimeout(() => {
-          window.location.href = "https://sites.google.com/view/comunidad-catolica-chns/coronilla-de-la-divina-misericordia";
-        }, 5000);
+	  let paso = 0; // [0 .. TOTAL_PASOS]
+	  actualizarUI();
 
-      } else {
-        btnSiguiente.textContent = paso === 0 ? "Comenzar" : "Siguiente";
-        btnSiguiente.disabled = false;
-        mensajeFinal.textContent = "";
-        cruz.classList.remove("animar");
-      }
-    }
+	  function textoOracion(paso) {
+		if (paso < PASOS_DECADAS) {
+		  const decada = Math.floor(paso / PASOS_POR_DECADA);  // 0..4
+		  const local = paso % PASOS_POR_DECADA;               // 0..10
+		  if (local === 0) {
+			return `Decena ${decada + 1} — Padre Eterno:
+	"Padre Eterno, te ofrezco el Cuerpo, la Sangre, el Alma y la Divinidad de Tu amadísimo Hijo, Nuestro Señor Jesucristo, en reparación de nuestros pecados y los del mundo entero."`;
+		  } else {
+			return `Decena ${decada + 1} — Cuenta ${local}:
+	"Por su dolorosa Pasión, ten misericordia de nosotros y del mundo entero."`;
+		  }
+		}
 
-    function avanzar() {
-      if (paso < oraciones.length - 1) {
-        paso++;
-        mostrarOracion();
-      }
-    }
+		const idxTris = paso - PASOS_DECADAS; // 0..?
+		if (idxTris >= 0 && idxTris < PASOS_TRISAGION) {
+		  return `Trisagio ${idxTris + 1} de 3:
+	"Santo Dios, Santo Fuerte, Santo Inmortal, ten Misericordia de nosotros y del mundo entero."`;
+		}
 
-    function retroceder() {
-      if (paso > 0) {
-        paso--;
-        mostrarOracion();
-      }
-    }
+		if (paso === PASOS_DECADAS + PASOS_TRISAGION) {
+		  return `Oración final:
+	"Oh Dios Eterno, en quien la misericordia es infinita y el tesoro de compasión inagotable, vuelve a nosotros Tu mirada bondadosa y aumenta Tu misericordia en nosotros, para que en momentos difíciles no nos desesperemos ni nos desalentemos, sino que, con gran confianza, nos sometamos a Tu santa voluntad, que es el Amor y la Misericordia mismos. Amén."`;
+		}
 
-    mostrarOracion();
-  </script>
+		return "Coronilla completada.";
+	  }
+
+	  function actualizarUI() {
+		// Texto
+		oracion.textContent = textoOracion(paso);
+
+		// Botones
+		btnAnterior.disabled = (paso === 0);
+
+		if (paso >= TOTAL_PASOS) {
+		  btnSiguiente.textContent = "Finalizado";
+		  btnSiguiente.disabled = true;
+		  mensajeFinal.textContent = "Has finalizado la Coronilla. Jesús, en Ti confío. Serás redirigido en unos segundos…";
+		  cruz.classList.add("animar");
+
+		  // Programar redirección (una sola vez)
+		  if (!redirectTimer) {
+			redirectTimer = setTimeout(() => {
+			  window.location.href = REDIRECT_URL;
+			}, REDIRECT_DELAY_MS);
+		  }
+		} else {
+		  btnSiguiente.textContent = (paso === 0) ? "Comenzar" : "Siguiente";
+		  btnSiguiente.disabled = false;
+		  mensajeFinal.textContent = "";
+		  cruz.classList.remove("animar");
+
+		  // Si el usuario retrocede antes de terminar, cancelar redirección pendiente
+		  if (redirectTimer) {
+			clearTimeout(redirectTimer);
+			redirectTimer = null;
+		  }
+		}
+
+		// Visual: cuentas
+		const chicas = cuentas.querySelectorAll('.cuenta');
+
+		if (paso < PASOS_DECADAS) {
+		  const decada = Math.floor(paso / PASOS_POR_DECADA); // 0..4
+		  const local = paso % PASOS_POR_DECADA;              // 0..10
+
+		  grandes.forEach((g, i) => {
+			g.classList.toggle("activa", i < decada);
+			g.classList.toggle("actual", i === decada);
+		  });
+
+		  chicas.forEach((c, i) => {
+			c.style.opacity = "1";
+			c.classList.toggle("activa", i < local && local > 0);
+		  });
+		} else {
+		  // Trisagio + Oración final: décadas completas y cuentas pequeñas apagadas
+		  grandes.forEach((g) => {
+			g.classList.add("activa");
+			g.classList.remove("actual");
+		  });
+		  chicas.forEach((c) => {
+			c.classList.remove("activa");
+			c.style.opacity = ".25";
+		  });
+		}
+	  }
+
+	  function avanzar() {
+		if (paso < TOTAL_PASOS) {
+		  paso++;
+		  actualizarUI();
+		}
+	  }
+
+	  function retroceder() {
+		if (paso > 0) {
+		  paso--;
+		  actualizarUI();
+		}
+	  }
+	</script>
+
 </body>
 </html>
