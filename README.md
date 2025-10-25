@@ -1,2 +1,2 @@
-# misterios-dolorosos
-Versión interactiva de los Misterios Dolorosos del Santo Rosario - Comunidad Carretera Hacia Nuestro Salvador
+# Coronilla de la Divina Misericordia
+Versión interactiva de la Coronilla de la Divina Misericordia - Comunidad Carretera Hacia Nuestro Salvador
